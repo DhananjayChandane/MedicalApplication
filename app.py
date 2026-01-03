@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, send_from_directory, make_response
-from flask_cors import CORS
 import psycopg2
 import psycopg2.extras
 import sqlite3
@@ -10,9 +9,7 @@ import csv
 import io
 import traceback
 from datetime import datetime, timedelta
-from functools import wraps
-
-from flask import Flask
+from functools import wrap
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static', static_url_path='')
@@ -20,15 +17,18 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-
 
 CORS(
     app,
-    resources={
-        r"/api/*": {
-            "origins": ["https://medicalapplication-3p64.onrender.com"]
-        }
-    },
     supports_credentials=True,
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 )
+
+@app.before_request
+def handle_preflight():
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.status_code = 200
+        return response
+
 
 
 # Enable debug logging
@@ -1624,5 +1624,6 @@ if __name__ == '__main__':
         print(f"Warning: Database initialization failed: {e}")
         
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
