@@ -11,17 +11,20 @@ import io
 import traceback
 from datetime import datetime, timedelta
 from functools import wraps
-import cors from "cors";
 
-
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-in-production')
+
 CORS(
     app,
-    resources={r"/api/*": {
-        "origins": "*"
-    }},
+    resources={
+        r"/api/*": {
+            "origins": ["https://medicalapplication-3p64.onrender.com"]
+        }
+    },
     supports_credentials=True,
     allow_headers=["Content-Type", "Authorization"],
     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
@@ -1621,4 +1624,5 @@ if __name__ == '__main__':
         print(f"Warning: Database initialization failed: {e}")
         
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
