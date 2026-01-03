@@ -1,0 +1,97 @@
+{
+  "name": "Medical Store Pro",
+  "short_name": "MedStore",
+  "description": "Enterprise Medical Store Management Application",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><text x='50%' y='50%' font-size='60' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>⚕️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a1a2e' width='512' height='512'/><text x='50%' y='50%' font-size='200' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>⚕️</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192' rx='40'/><text x='50%' y='50%' font-size='100' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>⚕️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a1a2e' width='512' height='512' rx='100'/><text x='50%' y='50%' font-size='300' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>⚕️</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View medical store dashboard",
+      "url": "/index.html?page=dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text x='50%' y='50%' font-size='60' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>📊</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Add Payment",
+      "short_name": "Payment",
+      "description": "Add new payment record",
+      "url": "/index.html?page=payments",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text x='50%' y='50%' font-size='60' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>💳</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Medicines",
+      "short_name": "Medicines",
+      "description": "Manage medicines inventory",
+      "url": "/index.html?page=medicines",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text x='50%' y='50%' font-size='60' fill='%2300d4ff' text-anchor='middle' dominant-baseline='middle'>💊</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "media",
+          "accept": ["image/*", "application/pdf"]
+        }
+      ]
+    }
+  }
+}

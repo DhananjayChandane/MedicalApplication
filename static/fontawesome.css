@@ -1,0 +1,84 @@
+/* FontAwesome 6.x Free - Pure CSS Unicode Icons (No External Fonts) */
+
+.fa, [class^="fa-"], [class*=" fa-"] {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 900;
+}
+
+/* Solid Icons */
+.fas, .fa-solid, .fa {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 900;
+}
+
+/* Brand Icons */
+.fab, .fa-brands {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+}
+
+/* Icon definitions using Unicode */
+.fa-check-circle::before { content: "✓"; font-weight: bold; }
+.fa-moon::before { content: "🌙"; font-size: 1.2em; }
+.fa-sun::before { content: "☀️"; font-size: 1.2em; }
+.fa-store::before { content: "🏪"; font-size: 1.2em; }
+.fa-user-tie::before { content: "🎩"; font-size: 1.2em; }
+.fa-envelope::before { content: "✉"; font-weight: bold; }
+.fa-phone::before { content: "☎"; font-weight: bold; }
+.fa-map-marker-alt::before { content: "📍"; font-size: 1.2em; }
+.fa-file::before { content: "📄"; font-size: 1.2em; }
+.fa-user::before { content: "👤"; font-size: 1.2em; }
+.fa-lock::before { content: "🔒"; font-size: 1.2em; }
+.fa-eye::before { content: "👁"; font-size: 1.2em; }
+.fa-eye-slash::before { content: "🚫"; font-size: 1.2em; }
+.fa-sign-out-alt::before { content: "🚪"; font-size: 1.2em; }
+.fa-dashboard::before { content: "📊"; font-size: 1.2em; }
+.fa-pill::before { content: "💊"; font-size: 1.2em; }
+.fa-users::before { content: "👥"; font-size: 1.2em; }
+.fa-credit-card::before { content: "💳"; font-size: 1.2em; }
+.fa-search::before { content: "🔍"; font-size: 1.2em; }
+.fa-filter::before { content: "⚙"; font-weight: bold; }
+.fa-download::before { content: "⬇"; font-weight: bold; }
+.fa-edit::before { content: "✏"; font-weight: bold; }
+.fa-trash::before { content: "🗑"; font-size: 1.2em; }
+.fa-plus::before { content: "+"; font-weight: bold; font-size: 1.3em; }
+.fa-times::before { content: "✕"; font-weight: bold; font-size: 1.3em; }
+.fa-arrow-left::before { content: "←"; font-weight: bold; }
+.fa-chart-bar::before { content: "📊"; font-size: 1.2em; }
+.fa-chart-pie::before { content: "🥧"; font-size: 1.2em; }
+.fa-bell::before { content: "🔔"; font-size: 1.2em; }
+.fa-cog::before { content: "⚙"; font-weight: bold; }
+.fa-history::before { content: "⏱"; font-size: 1.2em; }
+.fa-sync::before { content: "🔄"; font-size: 1.2em; }
+.fa-check::before { content: "✓"; font-weight: bold; font-size: 1.3em; }
+.fa-warning::before { content: "⚠"; font-size: 1.2em; }
+.fa-info-circle::before { content: "ℹ"; font-weight: bold; }
+.fa-shield-alt::before { content: "🛡"; font-size: 1.2em; }
+.fa-key::before { content: "🔑"; font-size: 1.2em; }
+.fa-clock::before { content: "⏰"; font-size: 1.2em; }
+.fa-trophy::before { content: "🏆"; font-size: 1.2em; }
+.fa-user-circle::before { content: "👤"; font-size: 1.2em; }
+.fa-camera::before { content: "📷"; font-size: 1.2em; }
+.fa-qrcode::before { content: "📱"; font-size: 1.2em; }
+.fa-upload::before { content: "⬆"; font-weight: bold; }
+.fa-magic::before { content: "✨"; font-size: 1.2em; }
+.fa-id-card::before { content: "🎫"; font-size: 1.2em; }
+.fa-keyboard::before { content: "⌨"; font-size: 1.2em; }
+.fa-question-circle::before { content: "❓"; font-size: 1.2em; }
+.fa-arrow-right::before { content: "→"; font-weight: bold; }
+.fa-home::before { content: "🏠"; font-size: 1.2em; }
+.fa-cash-register::before { content: "💰"; font-size: 1.2em; }
+.fa-pills::before { content: "💊"; font-size: 1.2em; }
+.fa-user-injured::before { content: "🩺"; font-size: 1.2em; }
+.fa-chart-line::before { content: "📈"; font-size: 1.2em; }
+.fa-heart::before { content: "❤"; font-size: 1.2em; }
+.fa-heartbeat::before { content: "💓"; font-size: 1.2em; }
+.fa-sliders-h::before { content: "⚙"; font-weight: bold; font-size: 1.2em; }
+

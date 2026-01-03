@@ -1,0 +1,591 @@
+                <!-- Settings Menu Button -->
+                <button class="settings-btn" onclick="toggleSettingsMenu()" aria-label="Settings menu">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+                
+                <!-- Settings Dropdown Menu -->
+                <div class="settings-menu" id="settingsMenu">
+                    <div class="settings-header">
+                        <h3><i class="fas fa-sliders-h"></i> Settings</h3>
+                        <button class="close-menu" onclick="toggleSettingsMenu()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <!-- Theme Toggle -->
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <i class="fas fa-moon"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Theme Mode</span>
+                                    <span class="setting-desc">Switch between light and dark</span>
+                                </div>
+                            </div>
+                            <div class="theme-switch">
+                                <button class="theme-option" onclick="setTheme('light')" id="lightBtn">
+                                    <i class="fas fa-sun"></i> Light
+                                </button>
+                                <button class="theme-option active" onclick="setTheme('dark')" id="darkBtn">
+                                    <i class="fas fa-moon"></i> Dark
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-divider"></div>
+                        
+                        <!-- Notifications -->
+                        <div class="setting-item clickable" onclick="toggleNotifications()">
+                            <div class="setting-info">
+                                <i class="fas fa-bell"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Notifications</span>
+                                    <span class="setting-desc">Manage alerts and updates</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <!-- Keyboard Shortcuts -->
+                        <div class="setting-item clickable" onclick="showKeyboardShortcuts()">
+                            <div class="setting-info">
+                                <i class="fas fa-keyboard"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Keyboard Shortcuts</span>
+                                    <span class="setting-desc">View all shortcuts (F1)</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="setting-divider"></div>
+                        
+                        <!-- Developer Info -->
+                        <div class="setting-item clickable" onclick="showDeveloperInfo()">
+                            <div class="setting-info">
+                                <i class="fas fa-info-circle"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Developer Info</span>
+                                    <span class="setting-desc">System & app details</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <!-- Export Data -->
+                        <div class="setting-item clickable" onclick="exportAllData()">
+                            <div class="setting-info">
+                                <i class="fas fa-download"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Export Data</span>
+                                    <span class="setting-desc">Download all records</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="setting-divider"></div>
+                        
+                        <!-- Account Settings -->
+                        <div class="setting-item clickable" onclick="showAccountSettings()">
+                            <div class="setting-info">
+                                <i class="fas fa-user-circle"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Account Settings</span>
+                                    <span class="setting-desc">Profile & security</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <!-- Help & Support -->
+                        <div class="setting-item clickable" onclick="showHelp()">
+                            <div class="setting-info">
+                                <i class="fas fa-question-circle"></i>
+                                <div class="setting-text">
+                                    <span class="setting-label">Help & Support</span>
+                                    <span class="setting-desc">Get assistance</span>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-footer">
+                        <button class="btn-logout-full" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('dashboard')">
+                <i class="fas fa-home"></i> Dashboard
+            </button>
+            <button class="tab-btn" onclick="showTab('payments')">
+                <i class="fas fa-cash-register"></i> Payments
+            </button>
+            <button class="tab-btn" onclick="showTab('medicines')">
+                <i class="fas fa-pills"></i> Medicines
+            </button>
+            <button class="tab-btn" onclick="showTab('patients')">
+                <i class="fas fa-user-injured"></i> Patients
+            </button>
+        </div>
+        
+        <div class="dashboard-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboardTab" class="tab-content active">
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #e3f2fd;"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <h3 id="todayRevenue">₹0</h3>
+                            <p>Today's Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #f3e5f5;"><i class="fas fa-receipt"></i></div>
+                        <div class="stat-info">
+                            <h3 id="todaySales">0</h3>
+                            <p>Today's Sales</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #e8f5e9;"><i class="fas fa-user-friends"></i></div>
+                        <div class="stat-info">
+                            <h3 id="totalPatients">0</h3>
+                            <p>Total Patients</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #fff3e0;"><i class="fas fa-low-vision"></i></div>
+                        <div class="stat-info">
+                            <h3 id="lowStockCount">0</h3>
+                            <p>Low Stock Alerts</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="card">
+                        <h2>Top Selling Medicines</h2>
+                        <div id="topMedicinesChart" class="chart-container"></div>
+                    </div>
+                    <div class="card">
+                        <h2>Payment Mode Distribution</h2>
+                        <div id="paymentModeChart" class="chart-container"></div>
+                    </div>
+                </div>
+                
+                <!-- Low Stock Alerts -->
+                <div class="card">
+                    <h2>Low Stock Alerts</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lowStockTableBody">
+                                <tr>
+                                    <td colspan="5" class="no-data">No low stock alerts</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payments Tab -->
+            <div id="paymentsTab" class="tab-content">
+                <div class="card">
+                    <h2>Add Payment Record</h2>
+                    <form id="paymentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patientName">Patient Name *</label>
+                                <input type="text" id="patientName" name="patientName" placeholder="Enter patient name" list="patientList" required>
+                                <datalist id="patientList"></datalist>
+                                <span class="error-message" id="patientNameError"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="medicineName">Medicine Name *</label>
+                                <input type="text" id="medicineName" name="medicineName" placeholder="Enter medicine name" list="medicineList" required>
+                                <datalist id="medicineList"></datalist>
+                                <span class="error-message" id="medicineNameError"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quantity">Quantity *</label>
+                                <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" min="1" required>
+                                <span class="error-message" id="quantityError"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="amount">Amount (₹) *</label>
+                                <input type="number" id="amount" name="amount" placeholder="Enter amount" min="0" step="0.01" required>
+                                <span class="error-message" id="amountError"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentMode">Payment Mode *</label>
+                            <select id="paymentMode" name="paymentMode" required>
+                                <option value="">Select payment mode</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                                <option value="UPI">UPI</option>
+                                <option value="Online">Online</option>
+                            </select>
+                            <span class="error-message" id="paymentModeError"></span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add Payment</button>
+                        <div class="alert" id="paymentAlert" style="display: none;"></div>
+                    </form>
+                </div>
+                
+                <!-- Search and Filter -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Payment History</h2>
+                        <div class="header-actions">
+                            <button class="btn btn-secondary" onclick="exportToCSV()">Export CSV</button>
+                            <button class="btn btn-secondary" onclick="loadPaymentHistory()">Refresh</button>
+                        </div>
+                    </div>
+                    
+                    <div class="search-filters">
+                        <input type="text" id="searchPayment" placeholder="Search by patient or medicine name..." oninput="filterPayments()">
+                        <select id="filterPaymentMode" onchange="filterPayments()">
+                            <option value="">All Payment Modes</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Card">Card</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Online">Online</option>
+                        </select>
+                        <input type="date" id="filterStartDate" onchange="filterPayments()">
+                        <input type="date" id="filterEndDate" onchange="filterPayments()">
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="paymentTable">
+                            <thead>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Patient Name</th>
+                                    <th>Medicine</th>
+                                    <th>Qty</th>
+                                    <th>Amount</th>
+                                    <th>Payment Mode</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentTableBody">
+                                <tr>
+                                    <td colspan="7" class="no-data">No payment records found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medicines Tab -->
+            <div id="medicinesTab" class="tab-content">
+                <div class="card">
+                    <h2>Add Medicine</h2>
+                    <form id="medicineForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="medName">Medicine Name *</label>
+                                <input type="text" id="medName" placeholder="Enter medicine name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="medCategory">Category</label>
+                                <select id="medCategory">
+                                    <option value="">Select category</option>
+                                    <option value="Tablet">Tablet</option>
+                                    <option value="Syrup">Syrup</option>
+                                    <option value="Injection">Injection</option>
+                                    <option value="Capsule">Capsule</option>
+                                    <option value="Ointment">Ointment</option>
+                                    <option value="Drops">Drops</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="medPrice">Price (₹) *</label>
+                                <input type="number" id="medPrice" placeholder="Enter price" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="medStock">Stock Quantity *</label>
+                                <input type="number" id="medStock" placeholder="Enter stock" min="0" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="medExpiry">Expiry Date</label>
+                                <input type="date" id="medExpiry">
+                            </div>
+                            <div class="form-group">
+                                <label for="medDescription">Description</label>
+                                <input type="text" id="medDescription" placeholder="Medicine description">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Medicine</button>
+                        <div class="alert" id="medicineAlert" style="display: none;"></div>
+                    </form>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Medicine Inventory</h2>
+                        <button class="btn btn-secondary" onclick="loadMedicines()">Refresh</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Expiry</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medicineTableBody">
+                                <tr>
+                                    <td colspan="6" class="no-data">No medicines found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Patients Tab -->
+            <div id="patientsTab" class="tab-content">
+                <div class="card">
+                    <h2>Add Patient</h2>
+                    <form id="patientForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patName">Patient Name *</label>
+                                <input type="text" id="patName" placeholder="Enter patient name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patPhone">Phone</label>
+                                <input type="tel" id="patPhone" placeholder="Enter phone number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patEmail">Email</label>
+                                <input type="email" id="patEmail" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="patAddress">Address</label>
+                                <input type="text" id="patAddress" placeholder="Enter address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="patHistory">Medical History</label>
+                            <textarea id="patHistory" placeholder="Enter medical history" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Patient</button>
+                        <div class="alert" id="patientAlert" style="display: none;"></div>
+                    </form>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Patient Records</h2>
+                        <button class="btn btn-secondary" onclick="loadPatients()">Refresh</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patientTableBody">
+                                <tr>
+                                    <td colspan="5" class="no-data">No patients found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Edit Record</h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <!-- Developer Info Modal -->
+    <div id="developerModal" class="modal">
+        <div class="modal-content dev-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Developer Information</h2>
+                <button class="close" onclick="closeDeveloperModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="dev-section">
+                    <h3><i class="fas fa-cogs"></i> Application Details</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Application Name</span>
+                            <span class="info-value">Medical Store Pro</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Version</span>
+                            <span class="info-value">2.0.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Build</span>
+                            <span class="info-value">Enterprise Edition</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Release Date</span>
+                            <span class="info-value">December 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dev-section">
+                    <h3><i class="fas fa-laptop-code"></i> Technology Stack</h3>
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <i class="fab fa-html5" style="color: #e34c26;"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt" style="color: #1572b6;"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js" style="color: #f7df1e;"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-python" style="color: #3776ab;"></i>
+                            <span>Python Flask</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database" style="color: #003b57;"></i>
+                            <span>SQLite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dev-section">
+                    <h3><i class="fas fa-rocket"></i> Features</h3>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> User Authentication & Authorization
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Payment Management System
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Medicine Inventory Tracking
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Patient Records Management
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Real-time Statistics Dashboard
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Dark Mode Support
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> CSV Export Functionality
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Mobile Responsive Design
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Password Reset System
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i> Keyboard Shortcuts
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dev-section">
+                    <h3><i class="fas fa-server"></i> System Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Backend</span>
+                            <span class="info-value">Flask 2.3.3</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Database</span>
+                            <span class="info-value">SQLite 3</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">API Type</span>
+                            <span class="info-value">RESTful API</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Platform</span>
+                            <span class="info-value">Web (APK Ready)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dev-section">
+                    <h3><i class="fas fa-user-shield"></i> Developer</h3>
+                    <div class="developer-card">
+                        <div class="dev-avatar">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="dev-details">
+                            <p class="dev-name">Medical Store Pro Team</p>
+                            <p class="dev-role">Full-Stack Development</p>
+                            <p class="dev-contact"><i class="fas fa-envelope"></i> support@medicalstore.pro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="theme.js"></script>
+    <script src="shortcuts.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

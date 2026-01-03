@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Store - Medical Store Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fontawesome.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚕️</text></svg>" type="image/svg+xml">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode (Alt+T)">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    
+    <div class="container">
+        <div class="auth-card enhanced">
+            <div class="header">
+                <div class="logo-container">
+                    <div class="icon animated">⚕️</div>
+                    <div class="app-title">
+                        <h1>Medical Store Pro</h1>
+                        <p class="version">v2.0 Enterprise Edition</p>
+                    </div>
+                </div>
+                <p class="subtitle">Register Your Medical Store</p>
+            </div>
+            
+            <form id="signupForm">
+                <!-- Store Information -->
+                <div class="form-group">
+                    <label for="store_name">
+                        <i class="fas fa-store"></i> Store Name *
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="store_name" name="store_name" placeholder="Enter your store name" required>
+                        <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="storeNameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="owner_name">
+                        <i class="fas fa-user-tie"></i> Owner Name *
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="owner_name" name="owner_name" placeholder="Enter owner full name" required>
+                        <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="ownerNameError"></span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address *
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" name="email" placeholder="owner@example.com" required>
+                            <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i> Phone Number
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                            <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">
+                            <i class="fas fa-city"></i> City *
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="city" name="city" placeholder="Enter city" required>
+                            <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <span class="error-message" id="cityError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="state">
+                            <i class="fas fa-map-marker-alt"></i> State
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="state" name="state" placeholder="Enter state">
+                            <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <span class="error-message" id="stateError"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">
+                        <i class="fas fa-map-marker"></i> Store Address
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="address" name="address" placeholder="Enter full store address">
+                        <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="addressError"></span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pincode">
+                            <i class="fas fa-map-pin"></i> Pincode
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="pincode" name="pincode" placeholder="Enter pincode">
+                            <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <span class="error-message" id="pincodeError"></span>
+                    </div>
+                </div>
+                
+                <!-- Account Information -->
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Username *
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" name="username" placeholder="Choose a username (min 3 chars)" required>
+                        <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <span class="error-message" id="usernameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Password *
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Create strong password" required>
+                        <span class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye" id="passwordIcon"></i>
+                        </span>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <span class="strength-text" id="strengthText"></span>
+                    <span class="error-message" id="passwordError"></span>
+                    
+                    <!-- Password Requirements -->
+                    <div class="password-requirements">
+                        <p style="font-size: 12px; color: var(--secondary-color); margin-bottom: 8px;">Password must include:</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li id="req-length"><i class="fas fa-circle"></i> <span>At least 8 characters</span></li>
+                            <li id="req-upper"><i class="fas fa-circle"></i> <span>One uppercase letter</span></li>
+                            <li id="req-lower"><i class="fas fa-circle"></i> <span>One lowercase letter</span></li>
+                            <li id="req-number"><i class="fas fa-circle"></i> <span>One number</span></li>
+                            <li id="req-special"><i class="fas fa-circle"></i> <span>One special character (!@#$%^&* etc)</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Two-Factor Authentication Setup -->
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enable2FA">
+                        <span>
+                            <i class="fas fa-shield-alt"></i> Enable Two-Factor Authentication (Recommended)
+                        </span>
+                    </label>
+                    <p class="help-text">Add an extra layer of security to your account</p>
+                </div>
+                
+                <!-- Terms and Conditions -->
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span>I agree to the <a href="#" onclick="showTerms(); return false;">Terms of Service</a> and <a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="signupBtn">
+                    <i class="fas fa-store"></i> Register Store
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+                
+                <div class="alert" id="signupAlert" style="display: none;"></div>
+            </form>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <div class="social-login">
+                <button class="btn-social" onclick="alert('OAuth integration coming soon!')">
+                    <i class="fab fa-google"></i> Sign up with Google
+                </button>
+            </div>
+            
+            <div class="footer">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+            
+            <!-- Security Features Info -->
+            <div class="security-badges">
+                <span class="badge-item"><i class="fas fa-lock"></i> Encrypted</span>
+                <span class="badge-item"><i class="fas fa-shield-alt"></i> 2FA Available</span>
+                <span class="badge-item"><i class="fas fa-user-shield"></i> Secure</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">Registration Successful!</h2>
+            <p style="color: var(--secondary-color); margin-bottom: 20px;">Your store has been registered successfully. Please save your Store Code securely.</p>
+            
+            <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; margin-bottom: 25px; border: 2px dashed var(--primary-color);">
+                <p style="font-size: 14px; color: var(--secondary-color); margin-bottom: 5px;">Your Store Code</p>
+                <div style="font-size: 32px; font-weight: bold; color: var(--dark-text); letter-spacing: 2px;" id="modalStoreCode"></div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="btn btn-primary" onclick="copyAndLogin()">
+                    <i class="fas fa-copy"></i> Copy Code & Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+    <script>
+       const API_BASE_URL = 'https://medicalapplication-g71s.onrender.com/api';
+
+        
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(fieldId + 'Icon');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                field.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+        
+        // Show alert
+        function showAlert(message, type, alertId, duration = 600000) {
+            const alert = document.getElementById(alertId);
+            alert.innerHTML = message; // Changed to innerHTML to support HTML content
+            alert.className = `alert ${type}`;
+            alert.style.display = 'block';
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, duration);
+            }
+        }
+
+        // Global Copy Function
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('#signupAlert button i');
+                if (btn) {
+                    btn.className = 'fas fa-check';
+                    setTimeout(() => btn.className = 'fas fa-copy', 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy', err);
+                // Fallback: select text so user can copy manually
+                const input = document.getElementById('generatedStoreCode');
+                if (input) input.select();
+            });
+        };
+
+        // Copy code and redirect
+        function copyAndLogin() {
+            const code = document.getElementById('modalStoreCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                // Redirect after copy
+                window.location.href = 'login.html?store_code=' + encodeURIComponent(code);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback redirect even if copy fails
+                window.location.href = 'login.html?store_code=' + encodeURIComponent(code);
+            });
+        }
+        
+        // Form validation
+        function validateForm(data) {
+            const errors = {};
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('.input-wrapper').forEach(el => el.classList.remove('error'));
+            
+            if (!data.store_name || data.store_name.trim().length < 3) {
+                errors.store_name = 'Store name must be at least 3 characters';
+            }
+            
+            if (!data.owner_name || data.owner_name.trim().length < 3) {
+                errors.owner_name = 'Owner name must be at least 3 characters';
+            }
+            
+            if (!data.email || !/\S+@\S+\.\S+/.test(data.email)) {
+                errors.email = 'Please enter a valid email address';
+            }
+            
+            if (!data.username || data.username.trim().length < 3) {
+                errors.username = 'Username must be at least 3 characters';
+            }
+            
+            // Password strength validation
+            if (!data.password || data.password.length < 8) {
+                errors.password = 'Password must be at least 8 characters';
+            } else {
+                const hasUpper = /[A-Z]/.test(data.password);
+                const hasLower = /[a-z]/.test(data.password);
+                const hasNumber = /[0-9]/.test(data.password);
+                const hasSpecial = /[^a-zA-Z0-9]/.test(data.password);
+                
+                if (!hasUpper || !hasLower || !hasNumber || !hasSpecial) {
+                    errors.password = 'Password must contain uppercase, lowercase, number, and special character';
+                }
+            }
+            
+            if (!data.city || data.city.trim().length < 2) {
+                errors.city = 'City must be at least 2 characters';
+            }
+            
+            // Show errors
+            Object.keys(errors).forEach(field => {
+                const inputElement = document.getElementById(field);
+                if (inputElement) {
+                    const errorElement = document.getElementById(field + 'Error');
+                    const inputWrapper = inputElement.closest('.input-wrapper');
+                    if (errorElement) {
+                        errorElement.textContent = errors[field];
+                        if (inputWrapper) {
+                            inputWrapper.classList.add('error');
+                        }
+                    }
+                }
+            });
+            
+            return Object.keys(errors).length === 0;
+        }
+        
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {
+                store_name: formData.get('store_name'),
+                owner_name: formData.get('owner_name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                city: formData.get('city'),
+                state: formData.get('state'),
+                pincode: formData.get('pincode'),
+                username: formData.get('username'),
+                password: formData.get('password')
+            };
+            
+            // Validate form
+            if (!validateForm(data)) {
+                return;
+            }
+            
+            const submitBtn = document.getElementById('signupBtn');
+            if (!submitBtn) {
+                console.error('Submit button not found');
+                return;
+            }
+            
+            const btnText = submitBtn.querySelector('i'); // First icon
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            
+            submitBtn.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnLoader) btnLoader.style.display = 'inline-block';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/store/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Save store code to localStorage for autofill
+                    localStorage.setItem('registered_store_code', result.store_code);
+                    
+                    // Show success message permanently in the alert box
+                    const alert = document.getElementById('signupAlert');
+                    
+                    // Create a robust success UI
+                    alert.innerHTML = `
+                        <div style="text-align: center; padding: 10px;">
+                            <i class="fas fa-check-circle" style="font-size: 40px; color: #2ecc71; margin-bottom: 15px;"></i>
+                            <h3 style="color: #2c3e50; margin-bottom: 10px;">Registration Successful!</h3>
+                            <p style="margin-bottom: 15px;">Your Store Code is generated below. <strong>You MUST save this code.</strong></p>
+                            
+                            <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; align-items: center;">
+                                <input type="text" value="${result.store_code}" readonly 
+                                    style="font-size: 24px; font-weight: bold; text-align: center; padding: 10px; border: 2px dashed #3498db; border-radius: 5px; width: 200px; background: #f8f9fa; color: #2c3e50; cursor: text;" 
+                                    id="generatedStoreCode" onclick="this.select()">
+                                
+                                <button type="button" class="btn" onclick="copyToClipboard('${result.store_code}')" style="padding: 10px 15px; background: #ecf0f1; color: #333; border: 1px solid #ccc;" title="Copy to Clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <a href="login.html?store_code=${encodeURIComponent(result.store_code)}" class="btn btn-primary" style="display:inline-block; width: 100%; text-decoration: none;">
+                                Login Now <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    `;
+                    
+                    alert.className = 'alert success';
+                    alert.style.display = 'block';
+                    alert.style.backgroundColor = '#fff';
+                    alert.style.border = '2px solid #2ecc71';
+                    alert.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                    
+                    // Scroll to the alert so user definitely sees it
+                    alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Set a 10-minute timeout (600,000 ms) as requested
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 600000);
+                    
+                    // Disable button and change text
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Registered';
+                    
+                    // Return early so we don't enable the button in finally block
+                    return;
+                } else {
+                    showAlert(result.message || 'Registration failed', 'error', 'signupAlert');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Connection error. Please try again.', 'error', 'signupAlert');
+            }
+            
+            // Re-enable button if we didn't return (meaning failure)
+            submitBtn.disabled = false;
+            if (btnText) btnText.style.display = 'inline';
+            if (btnLoader) btnLoader.style.display = 'none';
+        });
+        
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.getElementById('strengthBar');
+            let strength = 0;
+            
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            const strengthPercent = (strength / 5) * 100;
+            strengthBar.style.width = strengthPercent + '%';
+            
+            if (strength <= 2) {
+                strengthBar.style.backgroundColor = '#e63757';
+            } else if (strength <= 3) {
+                strengthBar.style.backgroundColor = '#f6c343';
+            } else {
+                strengthBar.style.backgroundColor = '#00d97e';
+            }
+        });
+        
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('medicalStoreTheme') || 'light';
+            applyTheme(savedTheme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+            localStorage.setItem('medicalStoreTheme', newTheme);
+        }
+        
+        function applyTheme(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (themeIcon) {
+                    themeIcon.className = 'fas fa-sun';
+                }
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (themeIcon) {
+                    themeIcon.className = 'fas fa-moon';
+                }
+            }
+        }
+        
+        // Initialize theme
+        initTheme();
+        
+        function showTerms() {
+            alert('Terms of Service: By using this application, you agree to comply with all applicable laws and regulations.');
+        }
+        
+        function showPrivacy() {
+            alert('Privacy Policy: We protect your data with industry-standard encryption and never share your information with third parties.');
+        }
+    </script>
+</body>
+</html>
+

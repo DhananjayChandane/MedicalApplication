@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Medical Store Pro</title>
+    <link rel="stylesheet" href="styles.css?v=1">
+    <link rel="stylesheet" href="fontawesome.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚕️</text></svg>" type="image/svg+xml">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-brand">
+                <button class="back-btn" onclick="window.history.back()" title="Back to Dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="brand-icon">⚙️</div>
+                <div class="brand-info">
+                    <h2>Account Settings</h2>
+                    <span class="brand-subtitle">Manage your profile & security</span>
+                </div>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="nav-user">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="user-info">
+                        <span id="welcomeUser" class="user-name">Welcome</span>
+                        <span class="user-role">Medical Owner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings Content -->
+        <div class="settings-page-container">
+            <!-- Settings Sidebar -->
+            <div class="settings-sidebar">
+                <!-- Sidebar Header -->
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-cog"></i> Account Settings</h3>
+                    <p class="sidebar-description">All your profile, security, and preferences settings in one place. Scroll to explore all features.</p>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <button class="sidebar-item active" onclick="showSettingsTab('profile')" id="profileTab">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </button>
+                    <button class="sidebar-item" onclick="showSettingsTab('security')" id="securityTab">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security</span>
+                    </button>
+                    <button class="sidebar-item" onclick="showSettingsTab('password')" id="passwordTab">
+                        <i class="fas fa-key"></i>
+                        <span>Password</span>
+                    </button>
+                    <button class="sidebar-item" onclick="showSettingsTab('sessions')" id="sessionsTab">
+                        <i class="fas fa-clock"></i>
+                        <span>Sessions</span>
+                    </button>
+                    <button class="sidebar-item" onclick="showSettingsTab('achievements')" id="achievementsTab">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </button>
+                    <button class="sidebar-item" onclick="showSettingsTab('privacy')" id="privacyTab">
+                        <i class="fas fa-lock"></i>
+                        <span>Privacy</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Settings Content Area -->
+            <div class="settings-content-area">
+                <!-- Profile Tab -->
+                <div id="profileContent" class="settings-tab-content active">
+                    <h2><i class="fas fa-user-circle"></i> Profile Information</h2>
+                    
+                    <!-- Profile Picture Section -->
+                    <div class="settings-card">
+                        <h3><i class="fas fa-camera"></i> Profile Picture</h3>
+                        <div class="profile-picture-section">
+                            <div class="current-avatar" id="currentAvatar">
+                                <div class="avatar-large" id="avatarDisplay">
+                                    <!-- Avatar will be loaded here -->
+                                </div>
+                                <div class="avatar-qr" title="QR Code for Profile" onclick="showQRCode()">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                            </div>
+                            <div class="avatar-actions">
+                                <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="uploadPhoto()">
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('photoUpload').click()">
+                                    <i class="fas fa-upload"></i> Upload Photo
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="generateAvatar()">
+                                    <i class="fas fa-magic"></i> Generate Avatar
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="showQRCode()">
+                                    <i class="fas fa-qrcode"></i> Share QR
+                                </button>
+                                <button type="button" class="btn btn-danger" onclick="removePhoto()">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                                <p style="font-size: 12px; color: var(--secondary-color); margin-top: 10px;">
+                                    <i class="fas fa-info-circle"></i> Max file size: 5MB. Formats: JPG, PNG, GIF
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Personal Details -->
+                    <div class="settings-card">
+                        <h3><i class="fas fa-id-card"></i> Personal Details</h3>
+                        <form id="personalDetailsForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Full Name *</label>
+                                    <input type="text" id="fullName" placeholder="Enter full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pronouns</label>
+                                    <select id="pronouns">
+                                        <option value="">Select pronouns</option>
+                                        <option value="he/him">He/Him</option>
+                                        <option value="she/her">She/Her</option>
+                                        <option value="they/them">They/Them</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Professional Title</label>
+                                    <input type="text" id="title" placeholder="e.g., Senior Pharmacist">
+                                </div>
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" id="designation" placeholder="e.g., Store Manager">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Alternative Email</label>
+                                    <input type="email" id="altEmail" placeholder="alternative.email@example.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Phone Number *</label>
+                                    <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Emergency Contact</label>
+                                    <input type="tel" id="emergencyContact" placeholder="+1 (555) 000-0000">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Physical Address</label>
+                                <textarea id="address" rows="2" placeholder="Street address"></textarea>
+                                <button type="button" class="btn-link" onclick="openMap()">
+                                    <i class="fas fa-map-marker-alt"></i> View on Map
+                                </button>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input type="date" id="dob">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <select id="gender">
+                                        <option value="">Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not">Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Blood Group</label>
+                                    <select id="bloodGroup">
+                                        <option value="">Select blood group</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Medical License Number</label>
+                                    <input type="text" id="licenseNumber" placeholder="License #">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Specializations/Certifications</label>
+                                <textarea id="certifications" rows="3" placeholder="List your certifications and specializations"></textarea>
+                            </div>
+                            
+                            <h4><i class="fab fa-linkedin"></i> Social Media Links</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fab fa-linkedin"></i> LinkedIn</label>
+                                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fab fa-twitter"></i> Twitter</label>
+                                    <input type="url" id="twitter" placeholder="https://twitter.com/yourhandle">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-save"></i> Save Profile
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Security Tab -->
+                <div id="securityContent" class="settings-tab-content">
+                    <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+                    
+                    <!-- Version Info Banner -->
+                    <div style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 12px; margin-bottom: 20px; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong style="color: #1565c0;">Current Version: 1.0.0</strong>
+                                <p style="margin: 5px 0 0 0; color: #1565c0; font-size: 13px;">
+                                    <i class="fas fa-lock"></i> Basic Security Features (2FA & Recovery Coming June 2026)
+                                </p>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="background: #4CAF50; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block;">
+                                    ✓ ACTIVE
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Coming Soon Alert -->
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; margin-bottom: 20px; border-radius: 4px; text-align: center;">
+                        <h3 style="margin: 0 0 8px 0;">
+                            <i class="fas fa-rocket"></i> Advanced Security Features Coming June 2026
+                        </h3>
+                        <p style="margin: 0; font-size: 14px;">
+                            2FA and Account Recovery will be available for all users starting June 2026. We're working to make your account even more secure!
+                        </p>
+                    </div>
+                    
+                    <!-- Two-Factor Authentication (DISABLED) -->
+                    <div class="settings-card" style="opacity: 0.5; pointer-events: none; background: #f5f5f5;">
+                        <h3><i class="fas fa-mobile-alt"></i> Two-Factor Authentication (2FA)</h3>
+                        <p class="card-description">Add an extra layer of security to your account</p>
+                        <div style="position: absolute; top: 20px; right: 20px; background: #ff6b6b; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                            COMING JUNE 2026
+                        </div>
+                        
+                        <div class="security-option">
+                            <div class="option-info">
+                                <i class="fas fa-sms"></i>
+                                <div>
+                                    <strong>SMS Verification</strong>
+                                    <p>Receive codes via text message</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" disabled style="cursor: not-allowed; opacity: 0.6;">Setup</button>
+                        </div>
+                        
+                        <div class="security-option">
+                            <div class="option-info">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email Verification</strong>
+                                    <p>Receive codes via email</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" disabled style="cursor: not-allowed; opacity: 0.6;">Setup</button>
+                        </div>
+                        
+                        <div class="security-option" style="opacity: 0.6; position: relative;">
+                            <div class="option-info">
+                                <i class="fas fa-qrcode"></i>
+                                <div>
+                                    <strong>Authenticator App</strong>
+                                    <p>Google Authenticator, Authy, etc.</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" disabled style="cursor: not-allowed;">Setup</button>
+                            <div style="position: absolute; top: 10px; right: 100px; background: #ff6b6b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                                COMING JUNE 2026
+                            </div>
+                        </div>
+                        
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin: 15px 0; border-radius: 4px;">
+                            <i class="fas fa-info-circle" style="color: #ff6b6b; margin-right: 8px;"></i>
+                            <strong style="color: #856404;">Future Feature:</strong>
+                            <span style="color: #856404;"> Google Authenticator support will be available in June 2026. Currently, you can use SMS and Email verification for 2FA.</span>
+                        </div>
+                        
+                        <div class="backup-codes" id="backupCodes" style="display: none;">
+                            <h4><i class="fas fa-key"></i> Backup Codes</h4>
+                            <p>Save these codes in a safe place. Each can be used once if you lose access to your device.</p>
+                            <div class="codes-grid" id="codesDisplay"></div>
+                            <button class="btn btn-secondary" onclick="downloadBackupCodes()">
+                                <i class="fas fa-download"></i> Download Codes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Recovery Options (DISABLED) -->
+                    <div class="settings-card" style="opacity: 0.5; pointer-events: none; background: #f5f5f5; position: relative;">
+                        <h3><i class="fas fa-life-ring"></i> Account Recovery</h3>
+                        <div style="position: absolute; top: 20px; right: 20px; background: #ff6b6b; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                            COMING JUNE 2026
+                        </div>
+                        <div class="form-group">
+                            <label>Recovery Email</label>
+                            <input type="email" id="recoveryEmail" placeholder="recovery@example.com" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Recovery Phone</label>
+                            <input type="tel" id="recoveryPhone" placeholder="+1 (555) 000-0000" disabled>
+                        </div>
+                        
+                        <h4><i class="fas fa-question-circle"></i> Security Questions</h4>
+                        <div class="form-group">
+                            <label>Question 1</label>
+                            <select id="securityQ1" disabled>
+                                <option>What was your first pet's name?</option>
+                                <option>What city were you born in?</option>
+                                <option>What is your mother's maiden name?</option>
+                                <option>What was your childhood nickname?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer" id="securityA1" disabled>
+                        </div>
+                        
+                        <button class="btn btn-primary recovery-save-btn" disabled style="cursor: not-allowed; opacity: 0.6;">
+                            <i class="fas fa-save"></i> Save Recovery Options
+                        </button>
+                    </div>
+                    
+                    <!-- Security Roadmap -->
+                    <div class="settings-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <h3><i class="fas fa-map"></i> Security Roadmap 2026</h3>
+                        <div style="margin-top: 15px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                <span style="background: #4CAF50; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold;">✓</span>
+                                <span style="font-size: 14px;"><strong>V1.0 (Now)</strong> - Basic Account Management</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                <span style="background: #FFC107; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold; color: #333;">★</span>
+                                <span style="font-size: 14px;"><strong>V1.1 (June 2026)</strong> - SMS & Email 2FA, Account Recovery</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <span style="background: #2196F3; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold;">▶</span>
+                                <span style="font-size: 14px;"><strong>V2.0 (Q3 2026)</strong> - Google Authenticator, Biometric Auth</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Password Tab -->
+                <div id="passwordContent" class="settings-tab-content">
+                    <h2><i class="fas fa-key"></i> Password Management</h2>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-lock"></i> Change Password</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="currentPassword" required>
+                                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('currentPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="newPassword" required oninput="checkPasswordStrength()">
+                                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('newPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength">
+                                    <div class="strength-bar" id="strengthBar"></div>
+                                </div>
+                                <span class="strength-text" id="strengthText"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="confirmPassword" required>
+                                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('confirmPassword')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="password-requirements">
+                                <h4>Password Requirements:</h4>
+                                <ul>
+                                    <li id="req-length"><i class="fas fa-circle"></i> At least 8 characters</li>
+                                    <li id="req-upper"><i class="fas fa-circle"></i> One uppercase letter</li>
+                                    <li id="req-lower"><i class="fas fa-circle"></i> One lowercase letter</li>
+                                    <li id="req-number"><i class="fas fa-circle"></i> One number</li>
+                                    <li id="req-special"><i class="fas fa-circle"></i> One special character</li>
+                                    <li id="req-history"><i class="fas fa-circle"></i> Cannot match last 5 passwords</li>
+                                </ul>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-history"></i> Password History</h3>
+                        <p>Your password cannot match any of your last 5 passwords</p>
+                        <div class="password-history-list">
+                            <div class="history-item">
+                                <i class="fas fa-key"></i>
+                                <div>
+                                    <strong>Changed on Dec 25, 2024</strong>
+                                    <p>Password changed successfully</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sessions Tab -->
+                <div id="sessionsContent" class="settings-tab-content">
+                    <h2><i class="fas fa-clock"></i> Active Sessions</h2>
+                    
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-desktop"></i> Your Devices</h3>
+                            <button class="btn btn-danger" onclick="logoutAllSessions()">
+                                <i class="fas fa-sign-out-alt"></i> Logout All Devices
+                            </button>
+                        </div>
+                        
+                        <div class="sessions-list" id="sessionsList">
+                            <div class="session-item current">
+                                <div class="session-icon">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <div class="session-info">
+                                    <strong>Windows PC - Chrome</strong>
+                                    <p><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                                    <p><i class="fas fa-network-wired"></i> IP: 192.168.1.1</p>
+                                    <p><i class="fas fa-clock"></i> Active now</p>
+                                    <span class="current-badge">Current Session</span>
+                                </div>
+                                <button class="btn btn-secondary" disabled>
+                                    <i class="fas fa-check"></i> Active
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Achievements Tab -->
+                <div id="achievementsContent" class="settings-tab-content">
+                    <h2><i class="fas fa-trophy"></i> Achievements & Badges</h2>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-medal"></i> Your Badges</h3>
+                        <div class="badges-grid">
+                            <div class="badge-item earned">
+                                <div class="badge-icon">🏆</div>
+                                <strong>First Sale</strong>
+                                <p>Completed first transaction</p>
+                            </div>
+                            <div class="badge-item earned">
+                                <div class="badge-icon">⭐</div>
+                                <strong>100 Sales</strong>
+                                <p>Reached 100 transactions</p>
+                            </div>
+                            <div class="badge-item locked">
+                                <div class="badge-icon">🎯</div>
+                                <strong>1000 Sales</strong>
+                                <p>Reach 1000 transactions</p>
+                            </div>
+                            <div class="badge-item locked">
+                                <div class="badge-icon">👑</div>
+                                <strong>Top Seller</strong>
+                                <p>Highest monthly sales</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-certificate"></i> Certificates & Training</h3>
+                        <div class="certificates-list">
+                            <div class="certificate-item completed">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Pharmacy Management Basics</strong>
+                                    <p>Completed: Dec 1, 2024</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="downloadCertificate(1)">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                            <div class="certificate-item in-progress">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Advanced Inventory Management</strong>
+                                    <p>Progress: 65%</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-chart-line"></i> Goal Progress</h3>
+                        <div class="goals-list">
+                            <div class="goal-item">
+                                <div class="goal-header">
+                                    <strong>Monthly Sales Target</strong>
+                                    <span>₹50,000 / ₹100,000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <div class="goal-header">
+                                    <strong>New Patients This Month</strong>
+                                    <span>12 / 20</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Privacy Tab -->
+                <div id="privacyContent" class="settings-tab-content">
+                    <h2><i class="fas fa-lock"></i> Privacy Settings</h2>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-eye"></i> Profile Visibility</h3>
+                        <div class="privacy-option">
+                            <label class="switch">
+                                <input type="checkbox" id="publicProfile" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div>
+                                <strong>Public Profile</strong>
+                                <p>Allow others to view your basic profile</p>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-option">
+                            <label class="switch">
+                                <input type="checkbox" id="showEmail">
+                                <span class="slider"></span>
+                            </label>
+                            <div>
+                                <strong>Show Email</strong>
+                                <p>Display email on public profile</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeQRModal()">&times;</button>
+            <h2><i class="fas fa-qrcode"></i> Profile QR Code</h2>
+            <div class="qr-display">
+                <div id="qrCode"></div>
+                <p>Scan to view profile</p>
+            </div>
+            <button class="btn btn-primary" onclick="downloadQR()">
+                <i class="fas fa-download"></i> Download QR Code
+            </button>
+        </div>
+    </div>
+    
+    <script src="theme.js"></script>
+    <script src="account-settings.js"></script>
+</body>
+</html>
