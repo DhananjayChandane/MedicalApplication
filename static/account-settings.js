@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://medicalapplication-g71s.onrender.com/api";
+const API_BASE_URL = "https://medicalapplication-3p64.onrender.com//api";
 
 let currentUser = null;
 let selectedAvatar = null;
@@ -685,4 +685,5 @@ function saveRecoveryOptions(userId) {
     showToast('Account Recovery will be available in June 2026! 🔐', 'info');
 
 }
+
 
