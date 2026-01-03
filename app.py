@@ -11,18 +11,32 @@ import io
 import traceback
 from datetime import datetime, timedelta
 from functools import wraps
+import cors from "cors";
 
-app = Flask(__name__, static_folder='static', static_url_path='')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-in-production')
-CORS(
-    app,
-    resources={r"/api/*": {
-        "origins": "*"
-    }},
-    supports_credentials=True,
-    allow_headers=["Content-Type", "Authorization"],
-    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-)
+app.use(cors({
+  origin: [
+    "https://medicalapplication-3p64.onrender.com"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+// IMPORTANT: allow preflight
+app.options("*", cors());
+
+
+# app = Flask(__name__, static_folder='static', static_url_path='')
+# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-in-production')
+# CORS(
+#     app,
+#     resources={r"/api/*": {
+#         "origins": "*"
+#     }},
+#     supports_credentials=True,
+#     allow_headers=["Content-Type", "Authorization"],
+#     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+# )
 
 
 # Enable debug logging
@@ -1618,3 +1632,4 @@ if __name__ == '__main__':
         print(f"Warning: Database initialization failed: {e}")
         
     app.run(debug=True, host='0.0.0.0', port=5000)
+
